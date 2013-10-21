@@ -11,8 +11,42 @@ import netP5.*;
 public class Controller extends PApplet {
 
 
-	String[] imgNames = {"tree_man.jpg", "skull.png", "skull_side.jpg", "skull_punk.jpg", "skull_masks.jpg", "scared.jpg", "metal_head.jpg", "lopez.jpg", "clock_turn.jpg", "dino.jpg", "flower_01.jpg", "fossil01.jpg", "fossil02.jpg", "kollewitz.jpg", 
-			"antique_doll.jpg", "aztec_mask.jpg", "cyborg.jpg", "ears.jpg", "fish1.jpg", "fish2.jpg", "gas_mask.jpg", "aztec.jpg"};
+	String[] imgNames = {
+			"antique_doll.jpg",
+			"aztec.jpg",
+			"aztec_mask.jpg",
+			"clock_turn.jpg", 
+			"colored_skull.jpg", 
+			"couple.jpg",
+			"cyborg.jpg", 
+			"dino.jpg", 
+			"ears.jpg",
+			"exploded_skull.jpg",
+			"fish1.jpg", 
+			"fish2.jpg",
+			"flower_01.jpg", 
+			"fossil01.jpg", 
+			"fossil02.jpg", 
+			"gas_mask.jpg",
+			"heart.jpg",
+			"kollewitz.jpg",
+			"l_elliot.jpg",
+			"lopez.jpg",
+			"maleDoll.jpg",
+			"man.jpg",
+			"male_xray.jpg",
+			"metal_head.jpg",
+			"scared.jpg",
+			"skull.jpg", 
+			"skull_masks.jpg", 
+			"skull_punk.jpg", 
+			"skull_side.jpg",
+			"snake.jpg",
+			"soldier2.jpg",
+			"tree_man.jpg",
+			"wBritSoldier.jpg",
+			"woman.jpg"
+			};
 
 	int surfCount = 60;
 	VerletSurface[] surfs = new VerletSurface[surfCount];
@@ -63,7 +97,7 @@ public class Controller extends PApplet {
 		//		gl.glEnable(gl.GL_CULL_FACE);
 
 		// ensure objects fly completely by camera before being clipped
-		frustum(-2, 2, -2, 2, 1, 20000);
+		frustum(-2, 2, -2*(float)displayHeight/(float)displayWidth, 2*(float)displayHeight/(float)displayWidth, 1, 20000);
 
 		// specify if corners are anchored or free - true is anchored
 		boolean[] edgeFlags = {
@@ -79,9 +113,9 @@ public class Controller extends PApplet {
 
 		}
 
-		// start oscP5- let's hope that it works!
-		//  oscP5 = new OscP5(this, 12002);
-		//  myRemoteLocation = new NetAddress("127.0.0.1", 12000);
+//		 //start oscP5, et's hope that it works!
+		  //oscP5 = new OscP5(this, 12001);
+//		  //myRemoteLocation = new NetAddress("127.0.0.1", 12000);
 	}
 
 	public void draw(){
@@ -94,7 +128,7 @@ public class Controller extends PApplet {
 			surfs[i].start();
 
 			// loop objs
-			if (surfs[i].loc.z>1600){
+			if (surfs[i].loc.z>1000){
 				surfs[i].loc.x = random(-100.0f, 100.0f);
 				surfs[i].loc.y = random(-100.0f, 100.0f);
 				surfs[i].loc.z = -1000;
@@ -150,7 +184,6 @@ public class Controller extends PApplet {
 					for(int j=0; j<surfs[i].vSticks.length; ++j){
 						if (surfs[i].vSticks[j].tension < .999f) {
 							surfs[i].vSticks[j].tension +=.1f;
-							println(surfs[i].vSticks[j].tension);
 						}
 					}
 				}
@@ -209,7 +242,7 @@ public class Controller extends PApplet {
 
 
 	public static void main(String args[]) {
-		PApplet.main(new String[] {"Controller" });
+		PApplet.main(new String[] {"--present", "Controller" });
 	}
 
 }

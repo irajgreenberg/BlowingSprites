@@ -1,8 +1,12 @@
+import java.awt.Color;
+
 import processing.core.*;
 import processing.opengl.PGL;
 import processing.opengl.PGraphicsOpenGL;
 
 import javax.media.opengl.GL2;
+import java.awt.*;
+import javax.swing.JFrame;
 
 import oscP5.*;
 import netP5.*;
@@ -48,7 +52,7 @@ public class Controller extends PApplet {
 			"woman.jpg"
 			};
 
-	int surfCount = 60;
+	int surfCount = 110;
 	VerletSurface[] surfs = new VerletSurface[surfCount];
 	int[] hitTargets = new int[surfCount];
 	float[] wafeFreqs = new float[surfCount];
@@ -79,10 +83,10 @@ public class Controller extends PApplet {
 	}
 
 	public void setup(){
-		size(displayWidth, displayHeight, P3D);
-		//rotX = -PI/2.0f;
-
-		// eases consistency with Java Color(1.0f, 1.0f, 1.0f, 1.0f)
+		size((int)(displayWidth/1.5f), displayHeight, P3D);
+		
+		// freak'n nasty
+		(((JFrame) frame).getContentPane()).setBackground(new Color(0,0,0));
 		colorMode(RGB, 1.0f);
 
 		// crank up anti-aliasing
@@ -116,10 +120,11 @@ public class Controller extends PApplet {
 //		 //start oscP5, et's hope that it works!
 		  //oscP5 = new OscP5(this, 12001);
 //		  //myRemoteLocation = new NetAddress("127.0.0.1", 12000);
+		repaint();
 	}
 
 	public void draw(){
-		background(0);
+		background(0.0f);
 		translate(width/2, height/2, 400);
 		lights();
 		for(int i=0; i<surfs.length; ++i){		

@@ -216,7 +216,7 @@ public class VerletSurfaceRect extends VerletSurface {
 		// if surface rendering flag true
 		if (isSurfaceVisible) {
 			if(dynamicSurfaceImageAlpha < surfaceImageAlpha){
-				dynamicSurfaceImageAlpha += .1f;
+				dynamicSurfaceImageAlpha += .04f;
 			}
 			p.noStroke();
 			p.tint(1.0f, dynamicSurfaceImageAlpha);
